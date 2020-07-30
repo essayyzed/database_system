@@ -1,0 +1,109 @@
+mysql> select DISTINCT(EMPLOYEE.EMP_NUM),CONCAT( EMP_FNAME," ", EMP_LNAME) FROM EMPLOYEE,HOURS WHERE EMPLOYEE.EMP_NUM = HOURS.EMP_NUM AND HOUR_RATE > 7.00;
++---------+-----------------------------------+
+| EMP_NUM | CONCAT( EMP_FNAME," ", EMP_LNAME) |
++---------+-----------------------------------+
+|     104 | Enrica Denver                     |
+|     105 | Mirrelle Namowa                   |
++---------+-----------------------------------+
+2 rows in set (0.00 sec)
+====================================================================
+
+SELECT
+    -> THEMEPARK.PARK_CODE, PARK_NAME, ATTRACT_NAME,
+    -> ATTRACT_CAPACITY
+    -> FROM THEMEPARK, ATTRACTION
+    -> WHERE THEMEPARK.PARK_CODE = ATTRACTION.PARK_CODE AND ATTRACT_CAPACITY > (SELECT AVG(ATTRACT_CAPACITY) FROM ATTRACTION);
++-----------+--------------+--------------+------------------+
+| PARK_CODE | PARK_NAME    | ATTRACT_NAME | ATTRACT_CAPACITY |
++-----------+--------------+--------------+------------------+
+| FR1001    | FairyLand    | Carnival     |              120 |
+| UK3452    | PleasureLand | 3D-Lego_Show |              200 |
+| UK3452    | PleasureLand | UnderSeaWord |               80 |
+| ZA1342    | GoldTown     | GoldRush     |               80 |
++-----------+--------------+--------------+------------------+
+4 rows in set (0.00 sec)
+
+
+
+
+SELECT PARK_CODE , COUNT(PARK_CODE) FROM TICKET GROUP BY PARK_CODE; 
++-----------+------------------+
+| PARK_CODE | COUNT(PARK_CODE) |
++-----------+------------------+
+| FR1001    |                3 |
+| SP4533    |                3 |
+| UK3452    |                3 |
+| ZA1342    |                3 |
++-----------+------------------+
+4 rows in set (0.00 sec)
+
+
+
+
+mysql> SELECT * FROM TICKET 
+    -> ORDER BY TICKET_TYPE DESC;
++-----------+--------------+-------------+-----------+
+| TICKET_NO | TICKET_PRICE | TICKET_TYPE | PARK_CODE |
++-----------+--------------+-------------+-----------+
+|     11003 |        10.99 | Senior      | SP4533    |
+|     13003 |        20.99 | Senior      | FR1001    |
+|     67855 |        12.12 | Senior      | ZA1342    |
+|     89720 |        10.99 | Senior      | UK3452    |
+|     11002 |        14.99 | Child       | SP4533    |
+|     13001 |        18.99 | Child       | FR1001    |
+|     67832 |        18.56 | Child       | ZA1342    |
+|     88567 |        22.50 | Child       | UK3452    |
+|     11001 |        24.99 | Adult       | SP4533    |
+|     13002 |        34.99 | Adult       | FR1001    |
+|     67833 |        28.67 | Adult       | ZA1342    |
+|     88568 |        42.10 | Adult       | UK3452    |
++-----------+--------------+-------------+-----------+
+12 rows in set (0.00 sec)
+
+SELECT * FROM ATTRACTION ORDER BY ATTRACT_NAME, ATTRACT_AGE ASC;
++------------+-----------------+-------------+------------------+-----------+
+| ATTRACT_NO | ATTRACT_NAME    | ATTRACT_AGE | ATTRACT_CAPACITY | PARK_CODE |
++------------+-----------------+-------------+------------------+-----------+
+|      10082 | NULL            |          10 |               40 | ZA1342    |
+|      20056 | 3D-Lego_Show    |           3 |              200 | UK3452    |
+|      10078 | Ant-Trap        |          23 |               30 | FR1001    |
+|      30011 | BlackHole2      |          12 |               34 | UK3452    |
+|      10098 | Carnival        |           3 |              120 | FR1001    |
+|      10067 | FlightToStars   |          11 |               24 | FR1001    |
+|      98764 | GoldRush        |           5 |               80 | ZA1342    |
+|      30012 | Pirates         |          10 |               42 | UK3452    |
+|      10056 | SpinningTeacups |           4 |               62 | FR1001    |
+|      10034 | ThunderCoaster  |          11 |               34 | FR1001    |
+|      30044 | UnderSeaWord    |           4 |               80 | UK3452    |
++------------+-----------------+-------------+------------------+-----------+
+11 rows in set (0.00 sec)
+
+ SELECT EMP_TITLE , COUNT(EMP_TITLE) FROM EMPLOYEE GROUP BY EMP_TITLE;
++-----------+------------------+
+| EMP_TITLE | COUNT(EMP_TITLE) |
++-----------+------------------+
+| Mr        |                2 |
+| Mrs       |                1 |
+| Ms        |                4 |
++-----------+------------------+
+3 rows in set (0.00 sec)
+
+
+
+SELECT PARK_NAME , PARK_CITY, ATTRACT_NAME, ATTRACT_CAPACITY FROM THEMEPARK NATURAL JOIN ATTRACTION;
++--------------+--------------+-----------------+------------------+
+| PARK_NAME    | PARK_CITY    | ATTRACT_NAME    | ATTRACT_CAPACITY |
++--------------+--------------+-----------------+------------------+
+| FairyLand    | PARIS        | ThunderCoaster  |               34 |
+| FairyLand    | PARIS        | SpinningTeacups |               62 |
+| FairyLand    | PARIS        | FlightToStars   |               24 |
+| FairyLand    | PARIS        | Ant-Trap        |               30 |
+| GoldTown     | JOHANNESBURG | NULL            |               40 |
+| FairyLand    | PARIS        | Carnival        |              120 |
+| PleasureLand | STOKE        | 3D-Lego_Show    |              200 |
+| PleasureLand | STOKE        | BlackHole2      |               34 |
+| PleasureLand | STOKE        | Pirates         |               42 |
+| PleasureLand | STOKE        | UnderSeaWord    |               80 |
+| GoldTown     | JOHANNESBURG | GoldRush        |               80 |
++--------------+--------------+-----------------+------------------+
+11 rows in set (0.00 sec)

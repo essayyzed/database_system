@@ -1,0 +1,301 @@
+************************ASSIGNMENT-01*******************************
+************************SYED ASAD ZAMAN*****************************
+************************P18-0034************************************
+
+
+
+
+
+++++++++++++++++++++++++++++QUESTION_1++++++++++++++++++++++++++++++
+
+mysql> show tables;
++---------------------+
+| Tables_in_employees |
++---------------------+
+| departments         |
+| dept_emp            |
+| dept_manager        |
+| employees           |
+| salaries            |
+| titles              |
++---------------------+
+6 rows in set (0.00 sec)
+
+mysql> 
+
+++==================================================================
+				       ***QUESTION-1-A***
+
+
+mysql> SELECT * FROM employees;                                           +--------+------------+------------+-----------+--------+------------+
+| emp_no | birth_date | first_name | last_name | gender | hire_date  |
++--------+------------+------------+-----------+--------+------------+
+|      1 | 1998-03-10 | Asad       |  Zaman    | M      | 2020-03-10 |
+|      2 | 1965-03-10 | SAID       |  Zaman    | M      | 2020-03-11 |
++--------+------------+------------+-----------+--------+------------+
+2 rows in set (0.00 sec)
+
+
+mysql> SELECT * FROM departments;
++---------+-----------+
+| dept_no | dept_name |
++---------+-----------+
+| 1       | POLUTRY   |
+| 2       | VETERNERY |
++---------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> 
+
+
+
+mysql> SELECT * FROM titles;
++--------+----------------------------+------------+------------+
+| emp_no | title                      | from_date  | to_date    |
++--------+----------------------------+------------+------------+
+|      1 | NATIONAL BUSSINESS MANAGER | 2020-03-10 | 2022-03-10 |
+|      2 | SALES MANAGER              | 2020-03-10 | 2022-03-10 |
++--------+----------------------------+------------+------------+
+2 rows in set (0.00 sec)
+
+
+mysql> SELECT * FROM dept_manager;
++---------+--------+------------+------------+
+| dept_no | emp_no | form_date  | to_date    |
++---------+--------+------------+------------+
+| 1       |      1 | 2020-02-09 | 2020-02-10 |
++---------+--------+------------+------------+
+1 row in set (0.00 sec)
+
+
+mysql> SELECT * FROM dept_emp;
++--------+---------+------------+------------+
+| emp_no | dept_no | from_date  | to_date    |
++--------+---------+------------+------------+
+|      1 | 1       | 2020-03-10 | 2022-03-10 |
+|      2 | 2       | 2020-03-11 | 2022-03-11 |
++--------+---------+------------+------------+
+2 rows in set (0.00 sec)
+
+====================================================================
+
+***************************QUESTION-1-B*****************************
+mysql> SELECT * FROM dept_emp;
++--------+---------+------------+------------+
+| emp_no | dept_no | from_date  | to_date    |
++--------+---------+------------+------------+
+|      1 | 1       | 2020-03-10 | 2022-03-10 |
+|      2 | 1       | 2020-03-11 | 2022-03-11 |
++--------+---------+------------+------------+
+2 rows in set (0.00 sec)
+
++--------+--------+------------+------------+
+| emp_no | salary | from_date  | to_date    |
++--------+--------+------------+------------+
+|      1 | 500000 | 2020-02-09 | 2020-03-10 |
+|      2 | 250000 | 2020-02-10 | 2020-03-10 |
++--------+--------+------------+------------+
+2 rows in set (0.00 sec)
+
+
+
+mysql> UPDATE departments 
+    -> SET
+    -> dept_name = 'PHARMA'
+    -> WHERE
+    -> dept_no = 1;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+mysql> SELECT * FROM departments;
++---------+-----------+
+| dept_no | dept_name |
++---------+-----------+
+| 1       | PHARMA    |
+| 2       | VETERNERY |
++---------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> UPDATE titles 
+    -> SET 
+    -> title = "COMMERCIAL DIRECTOR"
+    -> WHERE
+    -> emp_no = 2;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE titles 
+    -> SET 
+    -> title = "COMMERCIAL DIRECTOR"
+    -> WHERE
+    -> emp_no = 2;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM titles;
++--------+----------------------------+------------+------------+
+| emp_no | title                      | from_date  | to_date    |
++--------+----------------------------+------------+------------+
+|      1 | NATIONAL BUSSINESS MANAGER | 2020-03-10 | 2022-03-10 |
+|      2 | COMMERCIAL DIRECTOR        | 2020-03-10 | 2022-03-10 |
++--------+----------------------------+------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> UPDATE employees
+    -> SET 
+    -> hire_date = "2020-01-12"
+    -> WHERE emp_no = 1;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM employees;
++--------+------------+------------+-----------+--------+------------+
+| emp_no | birth_date | first_name | last_name | gender | hire_date  |
++--------+------------+------------+-----------+--------+------------+
+|      1 | 1998-03-10 | Asad       |  Zaman    | M      | 2020-01-12 |
+|      2 | 1965-03-10 | SAID       |  Zaman    | M      | 2020-03-11 |
++--------+------------+------------+-----------+--------+------------+
+2 rows in set (0.00 sec)
+
+===================================================================
+*************************QUESTION-1-C******************************
+
+DELETE FROM employees WHERE hire_date < '2020-02-01';
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT * FROM employees;
++--------+------------+------------+-----------+--------+------------+
+| emp_no | birth_date | first_name | last_name | gender | hire_date  |
++--------+------------+------------+-----------+--------+------------+
+|      2 | 1965-03-10 | SAID       |  Zaman    | M      | 2020-03-11 |
++--------+------------+------------+-----------+--------+------------+
+1 row in set (0.00 sec)
+
+
+mysql> DELETE FROM DEPARTMENT;
+ERROR 1146 (42S02): Table 'employees.DEPARTMENT' doesn't exist
+mysql> DELETE FROM departments;
+Query OK, 2 rows affected (0.04 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_employees |
++---------------------+
+| departments         |
+| dept_emp            |
+| dept_manager        |
+| employees           |
+| salaries            |
+| titles              |
++---------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from departments;
+Empty set (0.00 sec)
+
+mysql> 
+=======================================================================
+
+******************************QUESTION-2*******************************
++------------------+
+| Tables_in_pharma |
++------------------+
+| order_detail     |
+| orders           |
+| products         |
+| suppliers        |
++------------------+
+4 rows in set (0.00 sec)
+
+mysql> 
+
+
+CREATE TABLE suppliers (
+		s_id INT  NOT NULL,
+		s_name 	varchar(25)	NOT NULL,
+		contact varchar(12)	NOT NULL,
+		city varchar(20) NOT NULL,
+		PRIMARY KEY(s_id)
+);
+
+
+
+CREATE TABLE orders (
+		order_id INT NOT NULL,
+		customer_name varchar(25) NOT NULL,
+		order_date DATE NOT NULL,
+		PRIMARY KEY(order_id)
+);
+
+
+CREATE TABLE order_detail (
+		p_id INT NOT NULL,
+		order_id INT NOT NULL,
+		unit_purchased INT NOT NULL,
+		PRIMARY KEY(p_id, order_id)
+);
+
+
+CREATE TABLE products (
+		p_id INT NOT NULL,
+		p_name varchar(25) NOT NULL,
+		units INT NOT NULL,
+		unit_price INT NOT NULL,
+		type varchar(10) NOT NULL,
+		s_id INT NOT NULL,
+		PRIMARY KEY(p_id),
+		FOREIGN KEY(s_id) references suppliers(s_id) ON DELETE CASCADE 
+);
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+mysql> DELETE FROM products
+    -> WHERE p_name = 'Avil' 
+    -> AND type = 'Syrup';
+Query OK, 1 row affected (0.06 sec)
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+mysql> DELETE FROM orders
+    -> WHERE order_id = 22;
+Query OK, 1 row affected (0.05 sec)
+========================================================================
+
+mysql> DELETE FROM products
+    -> WHERE p_name = 'Avil' 
+    -> AND type = 'Syrup';
+Query OK, 1 row affected (0.06 sec)
+
+mysql> DELETE FROM orders
+    -> WHERE order_id = 22;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> DELETE FROM products;
+Query OK, 6 rows affected (0.03 sec)
+
+mysql> DELETE FROM orders;
+Query OK, 4 rows affected (0.06 sec)
+
+mysql> DELETE FROM order_detail;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELETE FROM suppliers;
+mysql> DELETE FROM suppliers;
+Query OK, 5 rows affected (0.03 sec)
+======================================================================
+
+mysql> DROP TABLE products;
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> DROP TABLE orders;
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> DROP TABLE order_detail;
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> DROP TABLE suppliers;
+Query OK, 0 rows affected (0.17 sec)
+=======================================================================
+

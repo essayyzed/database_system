@@ -1,0 +1,140 @@
+/******************************1**********************************/
+mysql> CREATE VIEW EMP_DETAILS AS
+    -> SELECT EMP_NUM, EMPLOYEE.PARK_CODE,PARK_NAME, EMP_LNAME, EMP_FNAME, EMP_HIRE_DATE,EMP_DOB
+    -> FROM EMPLOYEE, THEMEPARK
+    -> WHERE THEMEPARK.PARK_CODE = EMPLOYEE.PARK_CODE;
+Query OK, 0 rows affected (0.01 sec)
+/*******************************************************************/
+
+/******************************2***********************************/
+mysql> SELECT * FROM EMP_DETAILS;
++---------+-----------+--------------+------------+-----------+---------------+------------+
+| EMP_NUM | PARK_CODE | PARK_NAME    | EMP_LNAME  | EMP_FNAME | EMP_HIRE_DATE | EMP_DOB    |
++---------+-----------+--------------+------------+-----------+---------------+------------+
+|     100 | UK3452    | PleasureLand | Calderdale | Emma      | 1992-03-15    | 1972-06-15 |
+|     101 | UK3452    | PleasureLand | Ricardo    | Marshel   | 1996-04-25    | 1978-03-19 |
+|     102 | FR1001    | FairyLand    | Arshad     | Arif      | 1990-12-20    | 1969-11-14 |
+|     103 | UK3452    | PleasureLand | Roberts    | Anne      | 1994-08-16    | 1974-10-16 |
+|     104 | ZA1342    | GoldTown     | Denver     | Enrica    | 2001-10-20    | 1980-11-08 |
+|     105 | FR1001    | FairyLand    | Namowa     | Mirrelle  | 2006-11-08    | 1990-03-14 |
+|     106 | ZA1342    | GoldTown     | Smith      | Gemma     | 1989-01-05    | 1968-02-12 |
++---------+-----------+--------------+------------+-----------+---------------+------------+
+7 rows in set (0.01 sec)
+
+
+mysql> DESCRIBE EMP_DETAILS;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| EMP_NUM       | decimal(4,0) | NO   |     | NULL    |       |
+| PARK_CODE     | varchar(10)  | YES  |     | NULL    |       |
+| PARK_NAME     | varchar(35)  | NO   |     | NULL    |       |
+| EMP_LNAME     | varchar(15)  | NO   |     | NULL    |       |
+| EMP_FNAME     | varchar(15)  | NO   |     | NULL    |       |
+| EMP_HIRE_DATE | date         | YES  |     | NULL    |       |
+| EMP_DOB       | date         | NO   |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+/***********************************************************************/
+
+/***********************************3***********************************/
+mysql> SELECT EMP_FNAME, EMP_LNAME, THEMEPARK.PARK_NAME
+    -> FROM EMPLOYEE,THEMEPARK
+    -> WHERE EMPLOYEE.PARK_CODE = THEMEPARK.PARK_CODE;
++-----------+------------+--------------+
+| EMP_FNAME | EMP_LNAME  | PARK_NAME    |
++-----------+------------+--------------+
+| Emma      | Calderdale | PleasureLand |
+| Marshel   | Ricardo    | PleasureLand |
+| Arif      | Arshad     | FairyLand    |
+| Anne      | Roberts    | PleasureLand |
+| Enrica    | Denver     | GoldTown     |
+| Mirrelle  | Namowa     | FairyLand    |
+| Gemma     | Smith      | GoldTown     |
++-----------+------------+--------------+
+7 rows in set (0.00 sec)
+/**********************************************************/
+/********************4*******************************/
+mysql> CREATE USER 'asad'@'localhost' IDENTIFIED BY 'asad123';
+Query OK, 0 rows affected (0.00 sec)
+
+/*********a*******/
+mysql> GRANT SELECT ON 
+    -> themepark.EMP_DETAILS
+    -> TO 'asad'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+/****************************/*
+
+/**********b************/
+mysql> GRANT SELECT ON 
+    -> themepark.THEMEPARK
+    -> TO 'asad'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+/*******************************/
+
+
+/************c*******************/
+mysql> GRANT CREATE 
+    -> ON themepark.*
+    -> TO 'asad'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+/**************************************/
+
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.01 sec)
+/************************************************************/
+
+/**********************6********************************/
+mysql> CREATE VIEW SALES_DETAILS AS  
+    -> SELECT TRANSACTION_NO,LINE_NO
+    -> FROM SALES_LINE;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SELECT * FROM SALES_DETAILS;
++----------------+---------+
+| TRANSACTION_NO | LINE_NO |
++----------------+---------+
+|          12781 |       1 |
+|          12781 |       2 |
+|          12782 |       1 |
+|          12783 |       1 |
+|          12784 |       2 |
+|          12785 |       1 |
+|          12785 |       2 |
+|          12785 |       3 |
+|          34534 |       1 |
+|          34534 |       2 |
+|          34534 |       3 |
+|          34535 |       1 |
+|          34536 |       1 |
+|          34537 |       1 |
+|          34537 |       2 |
+|          34538 |       1 |
+|          34539 |       1 |
+|          34539 |       2 |
+|          34540 |       1 |
+|          34540 |       2 |
+|          34540 |       3 |
+|          34541 |       1 |
+|          67589 |       1 |
+|          67589 |       2 |
+|          67590 |       1 |
+|          67590 |       2 |
+|          67591 |       1 |
+|          67591 |       2 |
+|          67592 |       1 |
+|          67593 |       1 |
+|          67593 |       2 |
++----------------+---------+
+31 rows in set (0.00 sec)
+
+/**********************************************************/
+
+/**************************7********************************/
+REVOKE CREATE ON themepark.* to asad@localhost;
+Query OK, 0 rows affected (0.00 sec)
+
+
+

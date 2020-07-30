@@ -1,0 +1,138 @@
+mysql> source /media/essayyzed/Essentilas/University/semester-4/DataBase_Systems/Lab/Lab-10/task.sql;
+Query OK, 0 rows affected (0.04 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> source /media/essayyzed/Essentilas/University/semester-4/DataBase_Systems/Lab/Lab-10/task.sql;
+Query OK, 0 rows affected (0.03 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+Query OK, 0 rows affected (0.05 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.03 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
++---------+----------+----------+------------------+
+| user_id | username | password | email            |
++---------+----------+----------+------------------+
+|       1 | abc123   | def321   | abc123@yahoo.com |
+|       2 | xyz789   | vbn123   | xyz789@yahoo.com |
+|       3 | zamm     | zam123   | zam@gmail.com    |
++---------+----------+----------+------------------+
+3 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
++----+-------------+-------+---------+-------+
+| id | total_users | Yahoo | Hotmail | Gmail |
++----+-------------+-------+---------+-------+
+|  1 |           2 |     1 |       0 |     1 |
+|  3 |           4 |     2 |       1 |     0 |
++----+-------------+-------+---------+-------+
+2 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
++------+
+| @out |
++------+
+|    2 |
++------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
++------+
+| @out |
++------+
+|    0 |
++------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
++------+
+| @out |
++------+
+|    1 |
++------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
++----+-------------+-------+---------+-------+
+| id | total_users | Yahoo | Hotmail | Gmail |
++----+-------------+-------+---------+-------+
+|  1 |           2 |     1 |       0 |     1 |
+|  3 |           4 |     2 |       1 |     0 |
++----+-------------+-------+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> Terminal close -- exit!
+Aborted

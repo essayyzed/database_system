@@ -1,0 +1,36 @@
+
+mysql> source /media/essayyzed/Essentilas/University/semester-4/DataBase_Systems/Lab/Lab-12/index.sql
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
++-------+------------+------------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table | Non_unique | Key_name         | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++-------+------------+------------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| USERS |          0 | PRIMARY          |            1 | user_id     | A         |           2 |     NULL | NULL   |      | BTREE      |         |               |
+| USERS |          1 | idx_email        |            1 | email       | A         |           2 |     NULL | NULL   |      | BTREE      |         |               |
+| USERS |          1 | idx_usernme_pass |            1 | username    | A         |           2 |     NULL | NULL   |      | BTREE      |         |               |
+| USERS |          1 | idx_usernme_pass |            2 | password    | A         |           2 |     NULL | NULL   |      | BTREE      |         |               |
++-------+------------+------------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+4 rows in set (0.00 sec)
+
+
+##Unique INDEX:
+Unique indexes are used not only for **performance**, 
+but also for **data integrity**. 
+A unique index *does not allow any duplicate values* 
+to be inserted into the table.
+
+##IMPLICIT INDEX:
+mplicit indexes are indexes that are automatically created by the database server 
+when an object is created. 
+Indexes are automatically 
+created for primary key constraints and unique constraints.

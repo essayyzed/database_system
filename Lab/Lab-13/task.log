@@ -1,0 +1,236 @@
+smysql> SELECT EMP_LNAME,EMP_FNAME,EMP_DOB
+    -> FROM EMPLOYEE
+    -> WHERE DATE_FORMAT(EMP_DOB,'%d') = 14;
++-----------+-----------+------------+
+| EMP_LNAME | EMP_FNAME | EMP_DOB    |
++-----------+-----------+------------+
+| Arshad    | Arif      | 1969-11-14 |
+| Namowa    | Mirrelle  | 1990-03-14 |
++-----------+-----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> SELECT AVG(DATE_FORMAT('2008-11-25','%Y') - YEAR(EMP_DOB)) 
+    -> AS APPROXIMATE_AGE
+    -> FROM EMPLOYEE;
++-----------------+
+| APPROXIMATE_AGE |
++-----------------+
+|         32.1429 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> SELECT EMP_FNAME,EMP_LNAME,
+    -> CONCAT(SUBSTR(EMP_PHONE,1,3),LOWER(SUBSTR(EMP_FNAME,1,2))) AS USER_PASSWORD
+    -> FROM EMPLOYEE;
++-----------+------------+---------------+
+| EMP_FNAME | EMP_LNAME  | USER_PASSWORD |
++-----------+------------+---------------+
+| Emma      | Calderdale | 324em         |
+| Marshel   | Ricardo    | 324ma         |
+| Arif      | Arshad     | 675ar         |
+| Anne      | Roberts    | 898an         |
+| Enrica    | Denver     | 504en         |
+| Mirrelle  | Namowa     | 890mi         |
+| Gemma     | Smith      | 324ge         |
++-----------+------------+---------------+
+7 rows in set (0.00 sec)
+
+
+mysql> SELECT PARK_NAME, DATE_FORMAT( MAX(SALE_DATE),'%D %b %Y' ) AS 'LAST DATE TICKET PURCHASED'
+    -> FROM SALES
+    -> NATURAL JOIN THEMEPARK
+    -> GROUP BY PARK_CODE;
++--------------+----------------------------+
+| PARK_NAME    | LAST DATE TICKET PURCHASED |
++--------------+----------------------------+
+| FairyLand    | 18th May 2007              |
+| PleasureLand | 18th May 2007              |
+| GoldTown     | 18th May 2007              |
++--------------+----------------------------+
+3 rows in set (0.00 sec)
+
+
+
+
+
+
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> SELECT DISTINCT(DATE_FORMAT(SALE_DATE,'%a-%d-%m-%y'))
+    -> FROM SALES;
++----------------------------------------+
+| (DATE_FORMAT(SALE_DATE,'%a-%d-%m-%y')) |
++----------------------------------------+
+| Fri-18-05-07                           |
++----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DISTINCT(DATE_FORMAT(SALE_DATE,'%a-%d-%m-%y')) AS DATE
+    -> FROM SALES;
++--------------+
+| DATE         |
++--------------+
+| Fri-18-05-07 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| person             |
+| phpmyadmin         |
+| sales              |
+| sales_co           |
+| sys                |
+| themepark          |
+| university         |
+| users_2            |
++--------------------+
+11 rows in set (0.00 sec)
+
+mysql> use users_2;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SET AUTOCOMMIT = 0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO USERS VALUES(3,'abc231','pass123','zed@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> UPDATE USERS
+    -> SET username = 'asad123'
+    -> WHERE user_id = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> rollback;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from USERES;
+ERROR 1146 (42S02): Table 'users_2.USERES' doesn't exist
+mysql> SELECT * FROM USERS;
+ERROR 1046 (3D000): No database selected
+mysql> use users_2;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> use users_2;
+Database changed
+mysql> SELECT * FROM USERS;
++---------+----------+----------+------------------+
+| user_id | username | password | email            |
++---------+----------+----------+------------------+
+|       1 | abc123   | def321   | abc123@yahoo.com |
+|       2 | xyz789   | vbn123   | xyz789@gmail.com |
++---------+----------+----------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> ^C
+mysql> INSERT INTO USERS VALUES(3,'essayyzed','essayyzed123','essayyzed@gmail.com');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> UPDATE USERS
+    -> SET username = 'asad'
+    -> WHERE user_id = 1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM USERS;
++---------+-----------+--------------+---------------------+
+| user_id | username  | password     | email               |
++---------+-----------+--------------+---------------------+
+|       1 | asad      | def321       | abc123@yahoo.com    |
+|       2 | xyz789    | vbn123       | xyz789@gmail.com    |
+|       3 | essayyzed | essayyzed123 | essayyzed@gmail.com |
++---------+-----------+--------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO USERS VALUES(4,'syed','syed123','syed@gmail.com');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT * FROM USERS;
++---------+-----------+--------------+---------------------+
+| user_id | username  | password     | email               |
++---------+-----------+--------------+---------------------+
+|       1 | asad      | def321       | abc123@yahoo.com    |
+|       2 | xyz789    | vbn123       | xyz789@gmail.com    |
+|       3 | essayyzed | essayyzed123 | essayyzed@gmail.com |
+|       4 | syed      | syed123      | syed@gmail.com      |
++---------+-----------+--------------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> DELETE FROM USERS WHERE user_id = 4;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM USERS;
++---------+-----------+--------------+---------------------+
+| user_id | username  | password     | email               |
++---------+-----------+--------------+---------------------+
+|       1 | asad      | def321       | abc123@yahoo.com    |
+|       2 | xyz789    | vbn123       | xyz789@gmail.com    |
+|       3 | essayyzed | essayyzed123 | essayyzed@gmail.com |
++---------+-----------+--------------+---------------------+
+3 rows in set (0.00 sec)
+
+
+mysql> savepoint changes_users;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO USERS VALUES(4,'zaman','zaman123','zaman@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO USERS VALUES(5,'hamza','hamza123','hamza@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO USERS VALUES(6,'ali','ali123','ali@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM USERS;
++---------+-----------+--------------+---------------------+
+| user_id | username  | password     | email               |
++---------+-----------+--------------+---------------------+
+|       1 | asad      | def321       | abc123@yahoo.com    |
+|       2 | xyz789    | vbn123       | xyz789@gmail.com    |
+|       3 | essayyzed | essayyzed123 | essayyzed@gmail.com |
+|       4 | zaman     | zaman123     | zaman@gmail.com     |
+|       5 | hamza     | hamza123     | hamza@gmail.com     |
+|       6 | ali       | ali123       | ali@gmail.com       |
++---------+-----------+--------------+---------------------+
+6 rows in set (0.00 sec)
+
+mysql> ROLLBACK TO changes_users;
+ERROR 1305 (42000): SAVEPOINT changes_users does not exist
+mysql> savepoint changes;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELETE FROM USERS
+    -> WHERE user_id = 4;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> ROLLBACK TO changes;
+ERROR 1305 (42000): SAVEPOINT changes does not exist
+mysql> SAVEPOINT changes;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> Terminal close -- exit!
+Aborted
+mysql> Terminal close -- exit!
+Aborted
